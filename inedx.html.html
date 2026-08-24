@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Color Palette: Vibrant MG Blue & Coral Accent (#0F52BA, #00A896, #FF5964, #F4A261) -->
+    <!-- Narrative Plan: 
+         1. Hero Header & Executive Summary (Core Value Proposition)
+         2. Section 1: Background & Need (Why) - Traditional vs ACSS Model
+         3. Section 2: Core Specifications & Interest Rate Breakdown (What) - Interactive Chart of Preferential Rates
+         4. Section 3: 3E Differentiation Strategy (How) - Easy UX, Alternative Credit Scoring, Eco-system
+         5. Section 4: Non-face-to-face Process & Risk Management (Safety & Flow) - Daily Cash-flow Sync & Early Warning
+         6. Section 5: Target Outcomes & 4-Month Timeline (Outcome & Timeline) - KPI Goals & Phase Chart
+    -->
+    <!-- Visualizations Summary:
+         - Chart 1: Preferential Interest Rate Breakdown -> Horizontal Bar Chart (Chart.js) -> Compares discount points up to -1.5%p (NO SVG)
+         - Chart 2: ACSS Evaluation Factors Weight -> Donut Chart (Chart.js) -> Shows non-traditional scoring breakdown (NO SVG)
+         - Chart 3: Target Delinquency Rate Comparison -> Vertical Bar Chart (Chart.js) -> Benchmarks target 1.2% vs industry averages (NO SVG)
+         - Process Diagram: 3-Step Mobile Process -> Pure Tailwind CSS Cards & Unicode Flow (NO SVG, NO Mermaid)
+         - Timeline Roadmap: 4-Month Rollout -> Styled Grid Timeline Cards (NO SVG)
+    -->
+    <!-- Confirmation: Neither Mermaid JS nor SVG were used anywhere in this file. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MG 상생 hope dream 대출 기획안 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nanum Pen Script', cursive, sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+            font-size: 1.25rem; /* 손글씨 특성상 가독성을 위해 기본 폰트 크기 확대 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 290px;
+            max-height: 380px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 330px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased pb-16">
+
+    <!-- Header / Hero Section -->
+    <header class="bg-gradient-to-r from-blue-900 via-indigo-800 to-blue-700 text-white py-12 px-4 sm:px-6 lg:px-8 shadow-xl relative overflow-hidden">
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <span class="inline-block bg-teal-400 text-slate-900 font-bold text-xs uppercase px-3 py-1 rounded-full mb-3 tracking-wider">
+                        원페이퍼 신상품 기획안
+                    </span>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+                        MG 상생 hope dream 대출
+                    </h1>
+                    <p class="mt-2 text-blue-100 text-base sm:text-lg max-w-2xl font-light">
+                        전통시장 상인 및 지역 소상공인을 위한 모바일 전용 대안신용평가(ACSS) 맞춤형 우대 대출
+                    </p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-center min-w-[200px]">
+                    <div class="text-xs text-blue-200 uppercase font-semibold">최대 대출 한도 및 금리</div>
+                    <div class="text-2xl sm:text-3xl font-black text-amber-300 mt-1">최대 3,000만 원</div>
+                    <div class="text-sm font-medium text-teal-200">최저 연 3.8% ~ (우대 -1.5%p)</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-10">
+
+        <!-- Executive Key Indicators Banner -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white p-5 rounded-2xl shadow-md border-t-4 border-blue-600">
+                <div class="text-xs text-slate-500 font-semibold uppercase">목표 신규 고객</div>
+                <div class="text-2xl sm:text-3xl font-bold text-slate-800 mt-2">30,000 명</div>
+                <div class="text-xs text-blue-600 font-medium mt-1">📱 모바일 자영업자 타깃</div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl shadow-md border-t-4 border-teal-500">
+                <div class="text-xs text-slate-500 font-semibold uppercase">최대 우대금리</div>
+                <div class="text-2xl sm:text-3xl font-bold text-slate-800 mt-2">-1.5 %p</div>
+                <div class="text-xs text-teal-600 font-medium mt-1">🏷️ 상인회 및 거래 실적 연계</div>
+            </div>
+            <!-- Highlighted 1-Minute Loan Approval Card -->
+            <div class="bg-amber-400 p-5 rounded-2xl shadow-xl border-4 border-yellow-300 ring-4 ring-amber-400/30 transform hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                <span class="absolute top-2 right-2 bg-rose-600 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full animate-bounce shadow">
+                    초스피드 ⚡
+                </span>
+                <div class="text-xs text-slate-900 font-extrabold uppercase tracking-wide">대출 신청 소요시간</div>
+                <div class="text-3xl sm:text-4xl font-black text-slate-900 mt-1 drop-shadow-sm">단 1 분</div>
+                <div class="text-xs text-rose-700 font-extrabold mt-1 bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded-md inline-block">
+                    ⚡ 초고속 무서류 자동 스크래핑
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl shadow-md border-t-4 border-amber-500">
+                <div class="text-xs text-slate-500 font-semibold uppercase">목표 부실률 관리</div>
+                <div class="text-2xl sm:text-3xl font-bold text-slate-800 mt-2">1.2 % 이하</div>
+                <div class="text-xs text-amber-600 font-medium mt-1">🛡️ 매출 연계 자동 분할상환</div>
+            </div>
+        </section>
+
+        <!-- Section 1: Background & Need (Why) -->
+        <section class="bg-white rounded-2xl shadow-md p-6 sm:p-8 border border-slate-100">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-800 border-l-4 border-blue-600 pl-3 mb-4">
+                1. 추진 배경 및 필요성 (Why)
+            </h2>
+            <p class="text-slate-600 leading-relaxed text-sm sm:text-base mb-6">
+                전통시장 및 골목상권 영세 상인들은 현금 및 단기 정산 위주의 영업 특성상 국세청 공식 소득 증빙이 어려워 기존 금융권 대출에서 소외되어 왔습니다. 고금리·고물가 부담이 가중되는 상황에서 새마을금고는 독자적인 대안신용평가(ACSS) 모델을 통해 지역 포용금융을 강화하고 모바일 경쟁력을 확보하고자 합니다.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <div class="text-2xl mb-2">🏛️</div>
+                    <h3 class="font-bold text-slate-800 text-base mb-2">지역 포용금융 실천</h3>
+                    <p class="text-xs sm:text-sm text-slate-600">
+                        전통시장 상인 및 영세 소상공인의 실질적 금융비용을 경감하여 고금리 대환 및 안정적 경영자금 공급.
+                    </p>
+                </div>
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <div class="text-2xl mb-2">🧾</div>
+                    <h3 class="font-bold text-slate-800 text-base mb-2">소득 증빙 한계 극복</h3>
+                    <p class="text-xs sm:text-sm text-slate-600">
+                        카드 매출 정산 내역 및 상인회 활동 데이터 등 대안 데이터를 활용해 재무제표 부재 리스크를 보완.
+                    </p>
+                </div>
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <div class="text-2xl mb-2">📲</div>
+                    <h3 class="font-bold text-slate-800 text-base mb-2">디지털 경쟁력 확충</h3>
+                    <p class="text-xs sm:text-sm text-slate-600">
+                        인터넷전문은행의 자영업자 대출 확대에 대응하여 고령층 상인도 쉽게 쓰는 간편 모바일 UX 구축.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Core Specifications & Interest Rates (What) -->
+        <section class="bg-white rounded-2xl shadow-md p-6 sm:p-8 border border-slate-100">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-800 border-l-4 border-blue-600 pl-3 mb-4">
+                2. 상품 핵심 개요 및 금리 체계 (What)
+            </h2>
+            <p class="text-slate-600 leading-relaxed text-sm sm:text-base mb-6">
+                'MG 상생 hope dream 대출'은 사업자등록 6개월 이상 소상공인을 대상으로 최저 연 3.8%대 금리를 제공합니다. 상인회 추천, 카드 정산계좌 지정 등 4가지 실질 우대 조건으로 최대 -1.5%p 금리 감면 혜택을 제공합니다.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <!-- Specification Table -->
+                <div class="space-y-4">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <tbody>
+                                <tr class="border-b border-slate-200">
+                                    <th class="py-3 px-3 bg-slate-50 font-bold text-slate-700 w-28">상품명</th>
+                                    <td class="py-3 px-3 font-semibold text-blue-900">MG 상생 희망드림 대출 (모바일 전용)</td>
+                                </tr>
+                                <tr class="border-b border-slate-200">
+                                    <th class="py-3 px-3 bg-slate-50 font-bold text-slate-700">대출 대상</th>
+                                    <td class="py-3 px-3 text-slate-700">사업자등록 6개월 이상 전통시장 상인회 등록 상인 및 지역 소상공인</td>
+                                </tr>
+                                <tr class="border-b border-slate-200">
+                                    <th class="py-3 px-3 bg-slate-50 font-bold text-slate-700">한도 / 금리</th>
+                                    <td class="py-3 px-3 text-slate-700">최대 3,000만 원 / 최저 연 3.8% ~ (우대금리 최대 1.5%p 적용 시)</td>
+                                </tr>
+                                <tr class="border-b border-slate-200">
+                                    <th class="py-3 px-3 bg-slate-50 font-bold text-slate-700">기간 / 상환</th>
+                                    <td class="py-3 px-3 text-slate-700">1년 (최대 5년 연장) / 원리금균등 또는 <b>일/주 단위 매출 연계 자동 분할상환</b></td>
+                                </tr>
+                                <tr class="border-b border-slate-200">
+                                    <th class="py-3 px-3 bg-slate-50 font-bold text-slate-700">신청 채널</th>
+                                    <td class="py-3 px-3 text-slate-700">MG모바일 뱅킹 앱 (태블릿 기반 'O2O MG매니저' 현장 지원 병행)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Chart 1: Horizontal Bar Chart -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h3 class="text-sm font-bold text-slate-700 text-center mb-1">
+                        주요 우대금리 항목별 할인 폭 (최대 -1.5%p)
+                    </h3>
+                    <p class="text-xs text-slate-500 text-center mb-3">항목 중복 적용 가능</p>
+                    <div class="chart-container">
+                        <canvas id="rateChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: 3E Strategy & ACSS Breakdown (How) -->
+        <section class="bg-white rounded-2xl shadow-md p-6 sm:p-8 border border-slate-100">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-800 border-l-4 border-blue-600 pl-3 mb-4">
+                3. 핵심 차별화 전략: 3E Strategy (How)
+            </h2>
+            <p class="text-slate-600 leading-relaxed text-sm sm:text-base mb-6">
+                사용자 편의성(Easy), 대안신용평가(Easy-Assessment), 지역 생태계 연계(Eco-system)를 아우르는 3E 전략을 적용하여 기존 시중은행 및 인터넷은행 대출 상품과의 차별화를 도모합니다.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Card 1 -->
+            <div class="p-5 rounded-xl border-2 border-blue-100 bg-blue-50/50">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-blue-600 text-white font-black text-xs px-2 py-1 rounded">1. Easy</span>
+                    <h3 class="font-bold text-blue-900 text-lg">쉬운 모바일 UX</h3>
+                </div>
+                <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+                    <li class="flex items-start gap-1.5">
+                        <span class="text-blue-600 font-bold">•</span>
+                        <span><b>상생 쉬운모드:</b> 고령 상인 맞춤형 대형 글씨 및 음성 가이드(TTS) 제공</span>
+                    </li>
+                    <li class="flex items-start gap-1.5">
+                        <span class="text-blue-600 font-bold">•</span>
+                        <span><b>1분 스크래핑:</b> 공공마이데이터 연동으로 무서류 초간편 신청</span>
+                    </li>
+                </ul>
+            </div>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+                        <li class="flex items-start gap-1.5">
+                            <span class="text-blue-600 font-bold">•</span>
+                            <span><b>상생 쉬운모드:</b> 고령 상인 맞춤형 대형 글씨 및 음성 가이드(TTS) 제공</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span class="text-blue-600 font-bold">•</span>
+                            <span><b>3분 스크래핑:</b> 공공마이데이터 연동으로 무서류 간편 신청</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-5 rounded-xl border-2 border-teal-100 bg-teal-50/50">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-teal-600 text-white font-black text-xs px-2 py-1 rounded">2. Easy-Assessment</span>
+                        <h3 class="font-bold text-teal-900 text-lg">대안신용평가</h3>
+                    </div>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+                        <li class="flex items-start gap-1.5">
+                            <span class="text-teal-600 font-bold">•</span>
+                            <span><b>매출 데이터 분석:</b> POS 및 카드 정산 실시간 주기 분석</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span class="text-teal-600 font-bold">•</span>
+                            <span><b>지역 정성 평가:</b> 전통시장 입점 기간 및 상인회 활동 반영</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-5 rounded-xl border-2 border-amber-100 bg-amber-50/50">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-amber-600 text-white font-black text-xs px-2 py-1 rounded">3. Eco-system</span>
+                        <h3 class="font-bold text-amber-900 text-lg">지역 상생 생태계</h3>
+                    </div>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+                        <li class="flex items-start gap-1.5">
+                            <span class="text-amber-600 font-bold">•</span>
+                            <span><b>이차보전 연계:</b> 지자체 소상공인 이자 지원 사업 결합 가능</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span class="text-amber-600 font-bold">•</span>
+                            <span><b>경영 무료 컨설팅:</b> 세무, 노무, 마케팅 지원 프로그램 결합</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Chart 2: ACSS Donut Chart Breakdown -->
+            <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-800 mb-2">
+                            새마을금고 특화 대안신용평가(ACSS) 비중
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                            기존 금융권이 국세청 재무제표 위주(80% 이상)로 심사했던 것과 달리, 카드/POS 매출 정산 데이터(35%)와 전통시장 입점 및 상인회 활동 평가(25%) 등 비재무 실질 데이터를 총 80% 비중으로 반영합니다.
+                        </p>
+                        <div class="space-y-2 text-xs text-slate-700">
+                            <div class="flex items-center justify-between bg-white p-2 rounded border border-slate-200">
+                                <span>💳 POS·카드 매출 정산 데이터</span>
+                                <span class="font-bold text-blue-600">35%</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-white p-2 rounded border border-slate-200">
+                                <span>🏪 전통시장 입점 및 상인회 활동</span>
+                                <span class="font-bold text-teal-600">25%</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-white p-2 rounded border border-slate-200">
+                                <span>🏦 새마을금고 거래 기여도</span>
+                                <span class="font-bold text-amber-600">20%</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-white p-2 rounded border border-slate-200">
+                                <span>📄 전통 재무 및 공공 마이데이터</span>
+                                <span class="font-bold text-slate-500">20%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="acssChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Non-face-to-face Flow & Risk Management (Safety & Flow) -->
+        <section class="bg-white rounded-2xl shadow-md p-6 sm:p-8 border border-slate-100">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-800 border-l-4 border-blue-600 pl-3 mb-4">
+                4. 비대면 프로세스 및 리스크 관리 (Safety & Flow)
+            </h2>
+            <p class="text-slate-600 leading-relaxed text-sm sm:text-base mb-6">
+                3단계 비대면 모바일 프로세스로 대출 실행 시간을 <b>단 1분 내</b>로 단축하는 한편, 카드 매출 정산금 일/주 단위 자동 상환 및 조기경보시스템(EWS)을 구축하여 대출 부실 가능성을 사전에 차단합니다.
+            </p>
+
+            <!-- HTML/Tailwind Diagram Process -->
+            <div class="mb-8">
+                <h3 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-3">3단계 비대면 간편 대출 프로세스 (총 1분 소요)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-blue-900 text-white p-5 rounded-xl relative">
+                        <div class="text-xs text-blue-300 font-bold mb-1">STEP 01</div>
+                        <div class="text-lg font-bold mb-2">간편 본인 인증</div>
+                        <p class="text-xs text-blue-100">PASS 인증서 또는 금융인증서를 통한 원터치 본인 확인</p>
+                        <div class="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 text-2xl text-blue-600 z-10">➔</div>
+                    </div>
+                    <div class="bg-indigo-800 text-white p-5 rounded-xl relative">
+                        <div class="text-xs text-indigo-300 font-bold mb-1">STEP 02</div>
+                        <div class="text-lg font-bold mb-2">자동 서류 스크래핑</div>
+                        <p class="text-xs text-indigo-100">국세청, 건보, 카드사 매출 정산 데이터 1초 만에 자동 수집</p>
+                        <div class="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 text-2xl text-indigo-600 z-10">➔</div>
+                    </div>
+                    <div class="bg-teal-700 text-white p-5 rounded-xl">
+                        <div class="text-xs text-teal-300 font-bold mb-1">STEP 03</div>
+                        <div class="text-lg font-bold mb-2">ACSS 심사 및 승인</div>
+                        <p class="text-xs text-teal-100">대안신용평가 자동 심사 후 한도·금리 산정, 즉시 입금</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Management Features -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-5 bg-rose-50 rounded-xl border border-rose-200">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xl">🔄</span>
+                        <h3 class="font-bold text-rose-900 text-base">매출 연계 자동 상환 (Daily Cash-flow Sync)</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        카드 정산 대금 발생 시 소상공인이 설정한 일정한 비율(예: 정산금의 5%)이 일/주 단위로 대출 원리금으로 자동 분할 상환되어, 만기 시 일시상환 부담을 대폭 감소시킵니다.
+                    </p>
+                </div>
+                <div class="p-5 bg-amber-50 rounded-xl border border-amber-200">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xl">🚨</span>
+                        <h3 class="font-bold text-amber-900 text-base">조기 경보 시스템 (EWS) 및 컨설팅 연계</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        카드 매출이 3개월 연속 30% 이상 급감 시 위험 모니터링 알림이 발동되며, 새마을금고 무료 경영/세무 컨설팅 프로그램 및 지자체 이차보전 자금으로 자동 연결됩니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Target Outcomes & Timeline (Outcome & Timeline) -->
+        <section class="bg-white rounded-2xl shadow-md p-6 sm:p-8 border border-slate-100">
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-800 border-l-4 border-blue-600 pl-3 mb-4">
+                5. 기대 효과 및 실행 로드맵 (Outcome & Timeline)
+            </h2>
+            <p class="text-slate-600 leading-relaxed text-sm sm:text-base mb-6">
+                본 대출 상품 출시를 통해 신규 모바일 소상공인 고객 3만 명을 유치하고 연체율을 1.2% 이하로 철저히 관리할 계획입니다. 총 4개월간의 시스템 개발 및 협약을 거쳐 전국 출시할 예정입니다.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-8">
+                <!-- Chart 3: Target Delinquency Rate Comparison -->
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                    <h3 class="text-sm font-bold text-slate-800 text-center mb-1">
+                        목표 부실률 비교 (업권 평균 대비)
+                    </h3>
+                    <p class="text-xs text-slate-500 text-center mb-3">정산 연계 상환을 통한 건전성 확보</p>
+                    <div class="chart-container">
+                        <canvas id="kpiChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Timeline Roadmap -->
+                <div class="space-y-4">
+                    <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider">추진 일정 (총 4개월 소요)</h3>
+                    <div class="relative border-l-2 border-blue-500 ml-4 pl-6 space-y-6">
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-0 w-4 h-4 bg-blue-600 rounded-full border-4 border-white"></span>
+                            <div class="text-xs font-bold text-blue-600">1 ~ 2 개월차</div>
+                            <h4 class="text-base font-bold text-slate-800">시스템 개발 및 ACSS 모델 구축</h4>
+                            <p class="text-xs text-slate-600 mt-1">
+                                모바일 전용 UX '상생 쉬운모드' UI/UX 개발, POS/카드사 데이터 연동 핀테크 스크래핑 엔진 구축
+                            </p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-0 w-4 h-4 bg-teal-500 rounded-full border-4 border-white"></span>
+                            <div class="text-xs font-bold text-teal-600">3 개월차</div>
+                            <h4 class="text-base font-bold text-slate-800">베타 테스트 및 상인회 협약</h4>
+                            <p class="text-xs text-slate-600 mt-1">
+                                주요 거점 전통시장 상인회 대상 O2O 매니저 현장 테스트, 지자체 이차보전 연계 MOU 체결
+                            </p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-0 w-4 h-4 bg-amber-500 rounded-full border-4 border-white"></span>
+                            <div class="text-xs font-bold text-amber-600">4 개월차</div>
+                            <h4 class="text-base font-bold text-slate-800">전국 공식 출시 및 마케팅</h4>
+                            <p class="text-xs text-slate-600 mt-1">
+                                MG모바일 뱅킹 앱 정식 오픈, 전국 새마을금고 이자 지원 사업 마케팅 대대적 개시
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 text-center text-xs text-slate-400">
+        <p>© 2026 새마을금고중앙회 (KFCC) - 모바일 전용 소상공인 우대 대출 기획안 인포그래픽 SPA</p>
+    </footer>
+
+    <!-- Chart Script Initialization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Chart.js Global Font Setting
+            Chart.defaults.font.family = "'Nanum Pen Script', cursive, sans-serif";
+            Chart.defaults.font.size = 18;
+
+            // Label Wrapping Helper Logic (Ensures strings over 16 chars split into arrays)
+            function wrapLabel(label) {
+                if (typeof label !== 'string') return label;
+                if (label.length <= 16) return label;
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > 16) {
+                        if (currentLine) lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = currentLine ? currentLine + ' ' + word : word;
+                    }
+                });
+                if (currentLine) lines.push(currentLine.trim());
+                return lines;
+            }
+
+            // Shared Tooltip Callback Object (Mandatory Requirement)
+            const commonTooltipConfig = {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join(' ');
+                        } else {
+                            return label;
+                        }
+                    }
+                }
+            };
+
+            // Chart 1: Preferential Rate Breakdown (Horizontal Bar Chart)
+            const ctxRate = document.getElementById('rateChart').getContext('2d');
+            const rawRateLabels = [
+                '전통시장 상인회 추천 및 확인 (-0.5%p)',
+                '카드 정산계좌 MG 지정 (-0.4%p)',
+                '제로페이 및 지역상품권 가맹 (-0.3%p)',
+                '공과금 자동이체 2건 등록 (-0.3%p)'
+            ];
+            
+            new Chart(ctxRate, {
+                type: 'bar',
+                data: {
+                    labels: rawRateLabels.map(wrapLabel),
+                    datasets: [{
+                        label: '금리 우대 폭 (%p)',
+                        data: [0.5, 0.4, 0.3, 0.3],
+                        backgroundColor: ['#0F52BA', '#00A896', '#F4A261', '#36B37E'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: commonTooltipConfig
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 0.6,
+                            ticks: {
+                                callback: function(value) { return '-' + value + '%p'; }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: ACSS Evaluation Factor Weights (Donut Chart)
+            const ctxAcss = document.getElementById('acssChart').getContext('2d');
+            const rawAcssLabels = [
+                'POS 및 카드 매출 정산 데이터 (35%)',
+                '전통시장 입점 및 상인회 활동 (25%)',
+                '새마을금고 기존 거래 기여도 (20%)',
+                '국세청 재무 및 공공 마이데이터 (20%)'
+            ];
+
+            new Chart(ctxAcss, {
+                type: 'doughnut',
+                data: {
+                    labels: rawAcssLabels.map(wrapLabel),
+                    datasets: [{
+                        data: [35, 25, 20, 20],
+                        backgroundColor: ['#0F52BA', '#00A896', '#F4A261', '#94A3B8'],
+                        borderWidth: 2,
+                        borderColor: '#FFFFFF'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { boxWidth: 12, font: { size: 16 } }
+                        },
+                        tooltip: commonTooltipConfig
+                    },
+                    cutout: '65%'
+                }
+            });
+
+            // Chart 3: KPI Target Delinquency Rate Comparison (Vertical Bar Chart)
+            const ctxKpi = document.getElementById('kpiChart').getContext('2d');
+            const rawKpiLabels = [
+                'MG 상생 희망드림 대출 목표 부실률',
+                '시중은행 자영업자 대출 평균 부실률',
+                '저축은행 및 여신업계 평균 부실률'
+            ];
+
+            new Chart(ctxKpi, {
+                type: 'bar',
+                data: {
+                    labels: rawKpiLabels.map(wrapLabel),
+                    datasets: [{
+                        label: '연체/부실률 (%)',
+                        data: [1.2, 1.8, 2.8],
+                        backgroundColor: ['#00A896', '#64748B', '#FF5964'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: commonTooltipConfig
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 3.5,
+                            ticks: {
+                                callback: function(value) { return value + '%'; }
+                            }
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
